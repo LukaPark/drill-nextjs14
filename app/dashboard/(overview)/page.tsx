@@ -6,6 +6,7 @@ import { lusitana } from "../../ui/fonts";
 import clsx from "clsx";
 import { Suspense } from "react";
 import { CardsSkeleton, LatestInvoicesSkeleton, RevenueChartSkeleton } from "@/app/ui/skeletons";
+import {fetchRevenue} from "@/app/lib/data";
 
 // Page 함수는 현재 비동기 컴포넌트.
 async function Page() {
@@ -13,17 +14,17 @@ async function Page() {
 		<main>
 			<h1 className={clsx(lusitana.className, "mb-4 text-xl md:text-2xl")}>DashBoard</h1>
 			<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-				{/*<Suspense fallback={<CardsSkeleton />}>*/}
-				{/*	<CardWrapper />*/}
-				{/*</Suspense>*/}
+				<Suspense fallback={<CardsSkeleton />}>
+					<CardWrapper />
+				</Suspense>
 			</div>
 			<div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-				{/*<Suspense fallback={<RevenueChartSkeleton />}>*/}
-				{/*	<RevenueChart />*/}
-				{/*</Suspense>*/}
-				{/*<Suspense fallback={<LatestInvoicesSkeleton />}>*/}
-				{/*	<LatestInvoices />*/}
-				{/*</Suspense>*/}
+				<Suspense fallback={<RevenueChartSkeleton />}>
+					<RevenueChart />
+				</Suspense>
+				<Suspense fallback={<LatestInvoicesSkeleton />}>
+					<LatestInvoices />
+				</Suspense>
 			</div>
 		</main>
 	);
